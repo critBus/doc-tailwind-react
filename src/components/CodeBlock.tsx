@@ -8,7 +8,7 @@ export const CodeBlock = ({
   code: string;
   language: string;
 }) => {
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isExpanded, setIsExpanded] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
   const iconoCopiar = (
     <svg
