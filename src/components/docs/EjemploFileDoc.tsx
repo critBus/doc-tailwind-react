@@ -1,5 +1,3 @@
-import React from "react";
-
 export const EjemploFileDoc = () => {
   return (
     <div className="m-3 flex flex-col ">

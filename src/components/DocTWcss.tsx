@@ -1,6 +1,4 @@
-import React from "react";
 import EjemploPeerDoc from "./docs/EjemploPeerDoc";
-import { CodeBlock } from "./CodeBlock";
 import EjemploAfterDoc from "./docs/EjemploAfterDoc";
 import EjemploPlaceholder from "./docs/EjemploPlaceholder";
 import { EjemploFileDoc } from "./docs/EjemploFileDoc";

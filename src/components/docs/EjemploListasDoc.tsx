@@ -1,5 +1,3 @@
-import React from "react";
-
 const EjemploListasDoc = () => {
   return (
     <div className="m-3 flex flex-col w-full">
