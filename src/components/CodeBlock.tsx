@@ -99,7 +99,7 @@ export const CodeBlock = ({
           </button>
           <CopyBlock
             text={code}
-            language="html"
+            language={language}
             showLineNumbers={true}
             theme={dracula}
             codeBlock
