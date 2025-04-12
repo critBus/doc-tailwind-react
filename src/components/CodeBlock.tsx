@@ -1,7 +1,6 @@
 import React from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import { CopyBlock, dracula } from "react-code-blocks";
+
 export const CodeBlock = ({
   code,
   language,
@@ -9,8 +8,8 @@ export const CodeBlock = ({
   code: string;
   language: string;
 }) => {
+  const [isExpanded, setIsExpanded] = React.useState(true);
   const [copied, setCopied] = React.useState(false);
-  const [isExpanded, setIsExpanded] = React.useState(false);
   const iconoCopiar = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -77,17 +76,20 @@ export const CodeBlock = ({
       />
     </svg>
   );
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reinicia el estado después de 2 segundos
+    } catch (error) {
+      console.error("Error al copiar al portapapeles:", error);
+    }
+  };
   return (
     <div className="w-full">
       {isExpanded ? (
         <div className="relative w-full">
-          {/* Botón de copiar */}
-          <CopyToClipboard text={code} onCopy={() => setCopied(true)}>
-            <button className="absolute top-2 right-2 text-white/80 px-2 py-1 rounded hover:bg-gray-600 z-10">
-              {copied ? iconoCopiado : iconoCopiar}
-            </button>
-          </CopyToClipboard>
-
           {/* Botón de expansión */}
           <button
             className="absolute top-2 right-12 text-white/80 px-2 py-1 rounded hover:bg-gray-600 z-10"
@@ -95,30 +97,23 @@ export const CodeBlock = ({
           >
             {isExpanded ? iconoContraer : iconoExpandir}
           </button>
-
-          {/* Contenedor contraíble */}
-          <div
-            className={`overflow-hidden transition-all duration-300 ${
-              isExpanded ? "w-full" : "max-h-16"
-            }`}
-          >
-            <SyntaxHighlighter
-              language={language}
-              style={atomDark}
-              className="rounded-lg text-sm"
-              showLineNumbers
-            >
-              {code}
-            </SyntaxHighlighter>
-          </div>
+          <CopyBlock
+            text={code}
+            language="html"
+            showLineNumbers={true}
+            theme={dracula}
+            codeBlock
+          />
         </div>
       ) : (
         <div className="flex flex-row justify-center">
-          <CopyToClipboard text={code} onCopy={() => setCopied(true)}>
-            <button className="text-white/80 px-2 py-1 rounded hover:bg-gray-600 z-10">
-              {copied ? iconoCopiado : iconoCopiar}
-            </button>
-          </CopyToClipboard>
+          <button
+            className="text-white/80 px-2 py-1 rounded hover:bg-gray-600 z-10"
+            type="button"
+            onClick={handleCopy}
+          >
+            {copied ? iconoCopiado : iconoCopiar}
+          </button>
           <button
             className="text-white/80 px-2 py-1 rounded hover:bg-gray-600 z-10"
             onClick={() => setIsExpanded(!isExpanded)}

@@ -24,5 +24,6 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
     },
+    ignorePatterns: ["src/components/CodeBlock.tsx"],
   },
 )

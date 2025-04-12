@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+code {
+    width: 100%;
+    text-align: left;
+  }
