@@ -8,6 +8,7 @@ import EjemploPrimeraLineaTexto from "./docs/EjemploPrimeraLineaTexto";
 import EjemploFlex from "./docs/EjemploFlex";
 import EjemploGrid from "./docs/EjemploGrid";
 import { HeaderDocs } from "./docs/HeaderDocs";
+import EjemploModalDoc from "./docs/EjemploModalDoc";
 
 export const DocTWcss = () => {
   return (
@@ -714,6 +715,7 @@ export const DocTWcss = () => {
       <EjemploListasDoc />
       <EjemploSeleccion />
       <EjemploPrimeraLineaTexto />
+      <EjemploModalDoc />
     </div>
   );
 };
